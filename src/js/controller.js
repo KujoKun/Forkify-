@@ -2,6 +2,7 @@
 import * as model from './model.js';
 import recipeView from './views/recipeViews.js';
 import searchView from './views/searchView';
+import ResultsView from './views/searchResultView';
 
 const timeout = function (s) {
   return new Promise(function (_, reject) {
@@ -31,6 +32,7 @@ const controlRecipe = async function () {
 
 const controlSearchResult = async function () {
   try {
+    ResultsView.renderSpinner();
     const query = searchView.getQuery();
     if (!query) return;
     await model.loadSearchResult(query);
