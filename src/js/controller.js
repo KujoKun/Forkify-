@@ -23,7 +23,8 @@ const controlRecipe = async function () {
     // console.log(recipe);
 
     //2: Rendering recipe
-    recipeView.render(model.state.recipe);
+    console.log(model.state.recipe);
+    await recipeView.render(model.state.recipe);
   } catch (err) {
     recipeView.renderError();
     // console.log(err);
@@ -37,6 +38,7 @@ const controlSearchResult = async function () {
     if (!query) return;
     await model.loadSearchResult(query);
     console.log(model.state.search.results);
+    ResultsView.render(model.state.search.results);
   } catch (err) {
     console.error(err);
   }
