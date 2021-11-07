@@ -5,14 +5,14 @@ class ResultsView extends View {
   _parentElement = document.querySelector('.results');
 
   _generateMarkup() {
-    console.log(this._data);
+    // console.log(this._data);
 
     return this._data.map(this._generateMarkupPreview).join('');
   }
   _generateMarkupPreview(result) {
     return `
     <li class="preview">
-            <a class="preview__link preview__link--active" href="${result.id}">
+            <a class="preview__link preview__link--active" href="#${result.id}">
               <figure class="preview__fig">
                 <img src="${result.image}" alt="Test" />
               </figure>
