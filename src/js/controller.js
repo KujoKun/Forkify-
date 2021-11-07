@@ -3,6 +3,8 @@ import * as model from './model.js';
 import recipeView from './views/recipeViews.js';
 import searchView from './views/searchView';
 import ResultsView from './views/searchResultView';
+import PaginationView from './views/paginationView';
+import paginationView from './views/paginationView';
 
 const timeout = function (s) {
   return new Promise(function (_, reject) {
@@ -40,13 +42,20 @@ const controlSearchResult = async function () {
     // console.log(model.state.search.results);
     // ResultsView.render(model.state.search.results);
     ResultsView.render(model.getSearchResultPage());
+    paginationView.render(model.state.search);
   } catch (err) {
     console.error(err);
   }
 };
 
+const controlPagination = function (goToPage) {
+  ResultsView.render(model.getSearchResultPage(goToPage));
+  paginationView.render(model.state.search);
+};
+
 const init = function () {
   recipeView.addHandlerRender(controlRecipe);
   searchView.addHandlerSearch(controlSearchResult);
+  paginationView.addHandlerClick(controlPagination);
 };
 init();
